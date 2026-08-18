@@ -1,4 +1,4 @@
-import openai from "../utils/openai";
+import geminiModel from "../utils/gemini";
 import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
 import { useRef } from "react";
@@ -22,26 +22,21 @@ const GptSearchBar = () => {
 
   const handleGptSearchClick = async () => {
     console.log(searchText.current.value);
-    // make an API call to GPT API and grt movie results
+    // make an API call to Gemini API and get movie results
 
+    const gptQuery = "Act as a Movie Recommendation system and suggest some movies for the query : " + searchText.current.value + ". Only give me names of 5 movies, comma separated like the example result given ahead. Example Result: Gadar, Animal, Don, KGF, Golmaal. Do not write any other text or explanation.";
 
-    const gptQuery = "Act as a Movie Recommendation system and suggest some movies for the query : " + searchText.current.value + ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Animal, Don, KGF, Golmall";
-
-    const gptResults = await openai.chat.completions.create({
-      messages: [{ role: "user", content: gptQuery }],
-      model: "gpt-3.5-turbo",
-    });
-
-    if (!gptResults.choices) {
-      // TODO: Write Error Handling
+    let gptMovies = [];
+    try {
+      const result = await geminiModel.generateContent(gptQuery);
+      const responseText = result.response.text();
+      console.log("Gemini Response:", responseText);
+      gptMovies = responseText.split(",").map((movie) => movie.trim());
+    } catch (error) {
+      console.error("Gemini API Error:", error);
+      alert("Gemini API Error: " + error.message);
+      return;
     }
-
-    console.log(gptResults.choices?.[0]?.message?.content);
-
-    // Andaz Apna Apna, Hera Pheri, Chupke Chupke, Jaane Bhi Do Yaaro, Padosan
-    const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
-
-    // ["Andaz Apna Apna", "Hera Pheri", "Chupke Chupke", "Jaane Bhi Do Yaaro", "Padosan"]
 
     // For each movie I will search TMDB API
 
