@@ -7,7 +7,7 @@ export const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NWM3Y2NkZWRkNDM2NzNkYzI0NjkzMmFhYTcxZjg2ZCIsIm5iZiI6MTcyMTg4NDIxMi43ODkyNDQsInN1YiI6IjY2YTFkYmIzZTc0NmJjNGZlMWM4MzJiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sOknhb2qvGJSMo51hpXFyzBHvOus4Kf-JjTMnTIYF-U'
+    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NWM3Y2NkZWRkNDM2NzNkYzI0NjkzMmFhYTcxZjg2ZCIsIm5iZiI6MTcyMTg4NDIxMi43ODkyNDQsInN1YiI6IjY2YTFkYmIzZTc0NmJjNGZlMWM4MzJiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sOknhb2qvGJSMo51hpXFyzBHvOus4Kf-JjTMnTIYF-U",
   }
 };
 
@@ -21,3 +21,5 @@ export const SUPPORTED_LANGUAGES = [
   {identifier: "en",name: "English"},
   {identifier: "hindi",name: "Hindi"},
   {identifier: "spanish",name: "Spanish"},]
+
+  export const OPENAI_KEY = "sk-MPDRPhkg7xe6JIeQ1sV9Agauyle_HayEbW2EgAe71gT3BlbkFJgJRQWM9TultLqQd69aC3NSRmUtpYHMMiqGz5KuKbgA";
